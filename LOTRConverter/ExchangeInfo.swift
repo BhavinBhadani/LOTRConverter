@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ExchangeInfo: View {
+    @Environment(\.dismiss) var dismiss
     
     var body: some View {
         ZStack {
@@ -25,22 +26,10 @@ struct ExchangeInfo: View {
                     .font(.title3)
                     .padding()
                 
-                HStack {
-                    Image(.goldpiece)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 33)
-                    
-                    Text("One Gold Piece = 4 Gold Pennies")
-                    
-                    Image(.goldpenny)
-                        .resizable()
-                        .scaledToFit()
-                        .frame(height: 33)
-                }
-                
+                ExchangeRateView(leftImage: .goldpiece, rightImage: .goldpenny, exchangeText: "One Gold Piece = 4 Gold Pennies")
+
                 Button("Done") {
-                    
+                    dismiss()
                 }
                 .buttonStyle(.borderedProminent)
                 .tint(.brown.mix(with: .black, by: 0.2))
